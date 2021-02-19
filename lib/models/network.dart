@@ -21,12 +21,12 @@ class Network {
 
 Future getData() async {
   var data;
-  String url = "https://api.genelpara.com/embed/para-birimleri.json";
+  String url = "https://finans.truncgil.com/v2/today.json";
   Network network = Network(url);
   data = network.fetchData();
   data.then((value) {
-    print(value);
+    //print(value["USD"]["Buying"]);
   });
-
+  print("x");
   return data;
 }
