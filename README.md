@@ -1,1 +1,2 @@
-# currency_app
+Currency App for Evreka Internship by Yigit Gulec. <br/>
+API Url : https://api.genelpara.com/embed/para-birimleri.json (~1H refresh rate)
