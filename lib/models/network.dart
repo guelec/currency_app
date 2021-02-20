@@ -8,7 +8,7 @@ class Network {
   Network(this.url);
 
   Future fetchData() async {
-    print("$url");
+
     Response response = await get(Uri.encodeFull(url));
 
     if (response.statusCode == 200) {
@@ -27,6 +27,6 @@ Future getData() async {
   data.then((value) {
     //print(value["USD"]["Buying"]);
   });
-  print("x");
+
   return data;
 }
