@@ -11,7 +11,7 @@ class Splash_Screen extends StatefulWidget {
 class _Splash_ScreenState extends State<Splash_Screen> {
   void initState() {
     super.initState();
-    getData();
+    getData();      // In here we fetch data before launching main screen
   }
 
   @override

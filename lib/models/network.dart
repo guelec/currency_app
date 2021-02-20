@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+// Network Class to Get Data as a decoded JSon data from API URL
+
 class Network {
   final String url;
 

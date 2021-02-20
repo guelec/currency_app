@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   //Future<USD> futureApi;
   Future data;
   String _timeString;
-  bool _visible = true;
+  bool _visible = true;   // to control Fade Transition Animation
   void _refreshAnimation() {
     _visible = !_visible;
   }
@@ -31,15 +31,15 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     data = getData();
     //futureApi = apiCall();
-    const oneSec = const Duration(seconds: 1);
+    const oneSec = const Duration(seconds: 1);  // We animate fade transition every second
     new Timer.periodic(oneSec, (Timer t) {
       setState(() {
         _refreshAnimation();
       });
     });
-    const twoSec = const Duration(seconds: 2);
-    new Timer.periodic(twoSec, (Timer t) {
-      setState(() {
+    const twoSec = const Duration(seconds: 2);  // In every two seconds we get current time,
+    new Timer.periodic(twoSec, (Timer t) {      // get data from API and bind our Widget with
+      setState(() {                             // updated data.
         getTime();
         getData();
         my_future(_timeString, _visible);
@@ -92,6 +92,7 @@ Widget refresh_date(date, w, h) {
   );
 }
 
+// Column of three currencies will be shown under this function
 FutureBuilder my_future(date, _visible) {
   return FutureBuilder(
       future: getData(),
@@ -115,6 +116,7 @@ FutureBuilder my_future(date, _visible) {
       });
 }
 
+// Design of the each currency box
 Widget currency_box(context, snapshot, _date, String name, _visible) {
   var w = MediaQuery.of(context).size.width;
   var h = MediaQuery.of(context).size.height;
