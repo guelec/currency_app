@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:intl/intl.dart';
-import 'package:currency_app/models/currency.dart';
-import 'package:currency_app/models/deneme.dart';
 import 'package:currency_app/models/network.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
