@@ -21,7 +21,7 @@ class Network {
 
 Future getData() async {
   var data;
-  String url = "https://finans.truncgil.com/v2/today.json";
+  String url = "https://api.genelpara.com/embed/para-birimleri.json";
   Network network = Network(url);
   data = network.fetchData();
   data.then((value) {
