@@ -52,19 +52,23 @@ class _HomePageState extends State<HomePage> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-            color: Colors.grey.withOpacity(0.2),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  refresh_date(_timeString, width, height),
-                  Divider(height: width * 0.3, color: Colors.transparent),
-                  my_future(_timeString, _visible),
-                ],
-              ),
-            )));
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+                color: Colors.grey.withOpacity(0.2),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      refresh_date(_timeString, width, height),
+                      Divider(height: width * 0.05, color: Colors.transparent),
+                      my_future(_timeString, _visible),
+                    ],
+                  ),
+                )),
+          ),
+        ));
   }
 }
 
@@ -78,15 +82,15 @@ Widget refresh_date(date, w, h) {
 
   return ClipRRect(
     borderRadius: BorderRadius.circular(10),
-    child: Container(
-      width: w * 0.4,
-      height: w * 0.2,
-      decoration: BoxDecoration(
-        color: Colors.green,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(Icons.timelapse_rounded), _date_func(date)],
+    child: Center(
+      child: Container(
+        width: w * 0.4,
+        height: w * 0.4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [Icon(Icons.access_time, size: 90,), _date_func(date)],
+        ),
       ),
     ),
   );
@@ -109,6 +113,30 @@ FutureBuilder my_future(date, _visible) {
                   height: MediaQuery.of(context).size.height * 0.025,
                   color: Colors.transparent),
               currency_box(context, snapshot, date, "GBP", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "BTC", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "ETH", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "LTC", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "XRP", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "BCH", _visible),
+              Divider(
+                  height: MediaQuery.of(context).size.height * 0.025,
+                  color: Colors.transparent),
+              currency_box(context, snapshot, date, "XU100", _visible),
             ],
           );
         else
@@ -125,30 +153,13 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
       snapshot.data[name]["degisim"][2] +
       snapshot.data[name]["degisim"][3];
   Color rate_color;
-  IconData rate_icon;
-  if (double.parse(rate) < 0) {
-    rate_color = Colors.red;
-    rate_icon = Icons.trending_down_rounded;
-  } else if (double.parse(rate) > 0) {
-    rate_color = Colors.green;
-    rate_icon = Icons.trending_up_rounded;
-  } else {
-    rate_color = Colors.grey;
-    rate_icon = Icons.trending_neutral_rounded;
-  }
 
   return ClipRRect(
     borderRadius: BorderRadius.circular(10),
     child: Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.green, Colors.white, Colors.white, Colors.white]),
+        color: Colors.black45,
           boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
           ]),
       width: w * 0.9,
       height: w * 0.3,
@@ -188,7 +199,7 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
                         child: Container(
                             width: w * 0.2,
                             height: w * 0.075,
-                            color: Colors.grey.shade200,
+                            color: Colors.deepPurple,
                             child: Center(child: Text("Buying")))),
                     ClipRRect(
                         borderRadius: BorderRadius.only(
@@ -197,7 +208,7 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
                         child: Container(
                             width: w * 0.2,
                             height: w * 0.075,
-                            color: Colors.grey,
+                            color: Colors.deepPurpleAccent,
                             child: Center(
                                 child: Text(snapshot.data[name]["alis"])))),
                   ],
@@ -213,7 +224,7 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
                         child: Container(
                             width: w * 0.2,
                             height: w * 0.075,
-                            color: Colors.grey.shade200,
+                            color: Colors.deepPurple,
                             child: Center(child: Text("Selling")))),
                     ClipRRect(
                         borderRadius: BorderRadius.only(
@@ -222,7 +233,7 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
                         child: Container(
                             width: w * 0.2,
                             height: w * 0.075,
-                            color: Colors.grey,
+                            color: Colors.deepPurpleAccent,
                             child: Center(
                                 child: Text(snapshot.data[name]["satis"])))),
                   ],
@@ -233,21 +244,17 @@ Widget currency_box(context, snapshot, _date, String name, _visible) {
                   child: Container(
                     width: w * 0.15,
                     height: w * 0.15,
-                    color: Colors.grey.shade200,
+                    color: Colors.deepPurple,
                     child: Center(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("${snapshot.data[name]["degisim"]}%"),
-                        Icon(rate_icon),
+                        if(snapshot.data[name]["degisim"] != null)
+                          Text("${snapshot.data[name]["degisim"]}%"),
+
                       ],
                     )
-                        /*
-                      Text(
-                        snapshot.data[name]["degisim"],
-                        style: TextStyle(color: rate_color),
-                      ),
-                      */
                         ),
                   ),
                 )

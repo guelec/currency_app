@@ -18,7 +18,8 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   Widget build(BuildContext context) {
     return new SplashScreen(
       seconds: 2,
-      loaderColor: Colors.green,
+      backgroundColor: Colors.black45,
+      loaderColor: Colors.deepPurple,
       navigateAfterSeconds: HomePage(),
       image: new Image.asset("assets/icons/splash.png"),
       photoSize: 100,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(new MaterialApp(
     home: Splash_Screen(),
+    theme: ThemeData.dark(),
     title: "Evreka Currency",
     debugShowCheckedModeBanner: false,
   ));
